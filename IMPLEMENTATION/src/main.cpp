@@ -11,6 +11,7 @@
 
 #include "stm32f4xx.h"
 #include "clockconfig.h"
+#include "EXTI.h"
 
 
 custom_libraries::clock_config system_clock;
