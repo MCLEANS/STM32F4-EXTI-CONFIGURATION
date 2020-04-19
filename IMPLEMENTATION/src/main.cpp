@@ -13,10 +13,11 @@
 #include "clockconfig.h"
 
 
-
+custom_libraries::clock_config system_clock;
 
 int main(void)
 {
+	system_clock.initialize();
 
 	while(1){
 
