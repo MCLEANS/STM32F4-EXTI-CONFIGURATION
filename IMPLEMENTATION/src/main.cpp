@@ -15,6 +15,8 @@
 
 
 custom_libraries::clock_config system_clock;
+custom_libraries::edge response_edge = custom_libraries::FALLING;
+custom_libraries::_EXTI button(GPIOE,3,response_edge);
 bool toggle = false;
 
 extern "C" void EXTI3_IRQHandler(void){
@@ -27,10 +29,12 @@ extern "C" void EXTI3_IRQHandler(void){
 int main(void)
 {
 	system_clock.initialize();
-	//enable SYSCFG RCG
+	button.initialize();
+
+	/*
+	//enable SYSCFG RCC
 	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
-	//enable GPIOA RCC and GPIOE RCC
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
 	//select actual ext_int pin in interrupt system configuration register.
 	SYSCFG->EXTICR[0] = ~SYSCFG_EXTICR1_EXTI3;
@@ -44,6 +48,9 @@ int main(void)
 	GPIOE->MODER &= ~GPIO_MODER_MODER3;
 	GPIOE->PUPDR |= GPIO_PUPDR_PUPDR3_0;
 
+	*/
+	//enable GPIOA RCC and GPIOE RCC
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	//set GPIOA6 to output
 	GPIOA->MODER |= GPIO_MODER_MODER6_0;
 	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR6_1;
