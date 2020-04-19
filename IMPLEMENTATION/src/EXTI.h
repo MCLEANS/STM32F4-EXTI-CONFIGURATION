@@ -19,14 +19,16 @@ enum edge{
 
 class _EXTI {
 private:
-	GPIO_TypeDef GPIO;
+	GPIO_TypeDef *GPIO;
 	uint8_t PIN;
 	edge interrupt_edge;
 
 private:
 public:
 public:
-	_EXTI();
+	_EXTI(GPIO_TypeDef *GPIO,
+			uint8_t PIN,
+			edge interrupt_edge);
 	void initialize();
 	~_EXTI();
 };
